@@ -1,6 +1,12 @@
 from flask import Flask
 from flask import render_template
 from database import *
+from flask import Flask, render_template, request
+
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'super-secret-key'
+
 
 app = Flask(__name__)
 
@@ -15,6 +21,13 @@ def catbook_profile(id):
 	return render_template('cat.html',cat = cat)
 
 
+@app.route('/addcat', methods=['GET', 'POST'])
+def homepage():
+    print("###" * 100)
+    if request.method == 'GET':
+        return render_template("addcat.html")
+    else:
+        return render_template("addcat.html")
 
 if __name__ == '__main__':
    app.run(debug = True)
